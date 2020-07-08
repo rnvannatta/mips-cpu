@@ -1,0 +1,19 @@
+20020005 # main:   addi $2, $0, 5        # $2 will have 5
+2003000c #         addi $3, $0, 12       # $3 will have 12
+2067fff7 #         addi $7, $3, -9       # $7 will have 3
+00e22025 #         or   $4, $7, $2       # $4 will have 7
+00642824 #         and  $5, $3, $4       # $5 will have 4
+00a42820 #         add  $5, $5, $4       # $5 will have 11
+10a7000a #         beq  $5, $7, end      # don't take
+0064202a #         slt  $4, $3, $4       # $4 has 0?
+10800001 #         beq  $4, $0, around   # take, $0 = $4 = 0
+20050000 #         addi $5, $0, 0        # skipped
+00e2202a # around: slt  $4, $7, $2       # $4 has 1
+00853820 #         add  $7, $4, $5       # $7 has 12
+00e23822 #         sub  $7, $7, $2       # $7 has 7
+ac670074 #         sw   $7, 116($3)      # 128 has 7
+8c020080 #         lw   $2, 128($0)      # $2 has 7
+08000011 #         j end
+20020001 #         addi $2, $0, 1
+ac0200fc # end:    sw   $2, 252($0)
+08000011 #         j end
